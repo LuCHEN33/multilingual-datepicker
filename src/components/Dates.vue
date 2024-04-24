@@ -7,7 +7,7 @@
             </h2>
 
             <div class="grid grid-cols-7 gap-1">
-                <div v-for="weekDay in dayjs.weekdaysMin()" class="font-semibold text-sm text-gray-500 text-center">{{ weekDay }}</div>
+                <div v-for="weekDay in dayjs.weekdaysShort()" class="font-semibold text-sm text-gray-500 text-center">{{ weekDay }}</div>
 
                 <div v-for="day in monthDays" class="flex justify-center items-center">
                     <div v-if="isSameMonth(day)" v-bind:class="[
@@ -42,6 +42,7 @@ export default {
         const showCalendar = inject('showCalendar')
         const monthDays = inject('monthDays')
         const date = inject('date')
+        
 
         const isSameMonth = (day) => {
             return day.isSame(date.value.format('YYYY-MM'), 'month')
