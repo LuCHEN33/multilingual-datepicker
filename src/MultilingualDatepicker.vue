@@ -8,7 +8,7 @@
           <div
               class="relative w-full pl-4 pr-10 py-3 rounded-md overflow-hidden text-base transition-colors bg-gray-50 border focus-within:ring focus-within:outline-none dark:focus-within:ring-opacity-25"
                v-bind="$attrs">
-              <span v-if="multilingualDatepicker.selectedBeginDate.value">{{ multilingualDatepicker.selectedBeginDate.value.format(format) }}</span>
+              <span v-if="multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedEndDate.value">{{ multilingualDatepicker.selectedBeginDate.value.format(format) }}~{{ multilingualDatepicker.selectedEndDate.value.format(format) }}</span>
           </div>
       </slot>
 
@@ -62,6 +62,7 @@ export default {
   name: 'MultilingualDatepicker',
   props: {
       date: String,
+      endDate: String,
       format: {
           type: String,
           default: 'DD MMM YYYY'
@@ -91,6 +92,7 @@ export default {
 
       const calendarView = computed(() => {
           const date = ref((props.date)? dayjs(props.date) : dayjs())
+          const endDate = ref((props.endDate)? dayjs(props.endDate) : dayjs())
 
           const subtractMonth = () => {
               date.value = date.value.subtract(1, 'month')
@@ -104,6 +106,9 @@ export default {
               date.value = value
           })
 
+          watch(() => multilingualDatepicker.selectedEndDate.value, (value, prevValue) => {
+            endDate.value = value
+         })
           return {
               subtractMonth,
               addMonth,
