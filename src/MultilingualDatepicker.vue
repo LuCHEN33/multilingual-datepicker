@@ -25,7 +25,7 @@
               </button>
 
               <div class="flex space-x-12 w-full">
-                  <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
+                   <Calendar v-for="x in 2" :date="calendarView.date.value.add((x - 1), 'month')" />
               </div>
 
               <button @click="calendarView.addMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full">
@@ -67,7 +67,7 @@ export default {
           default: 'DD MMM YYYY'
       },
       isRange: Boolean,
-      autoApply: Boolean
+      isDisplay: Boolean,
   },
   components: {
       Calendar,
@@ -87,7 +87,7 @@ export default {
   },
   setup(props) {
       const showCalendar = ref(false)
-      const multilingualDatepicker = new picker('2024-01-01', null, (props.isRange === 'true'), (props.isDisplay === 'true'))
+      const multilingualDatepicker = new picker(props.date ?? null, props.endDate ?? null, true, (props.isDisplay === 'true'))
 
       const calendarView = computed(() => {
           const date = ref((props.date)? dayjs(props.date) : dayjs())
