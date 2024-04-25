@@ -5,11 +5,26 @@
           :placeholder="$attrs.placeholder"
           :clear="clearDate"
       >
-          <div
-              class="relative flex-1 w-full pl-4 pr-10 py-3 rounded-md overflow-hidden text-base transition-colors bg-gray-50 border focus-within:ring focus-within:outline-none dark:focus-within:ring-opacity-25"
-               v-bind="$attrs">
-              <span v-if="multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedEndDate.value">{{ multilingualDatepicker.selectedBeginDate.value.format(format) }}~{{ multilingualDatepicker.selectedEndDate.value.format(format) }}</span>
-          </div>
+      <div class="relative flex w-full pl-4 pr-10 items-center justify-center py-3 w-72 h-10 rounded-md overflow-hidden text-base transition-colors bg-gray-50 border shadow-xl">
+        <template v-if="multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedEndDate.value">
+            <span class="text-md text-gray-700 flex items-center flex-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M3 7h18M6 4v2M18 4v2M5 7V4a2 2 0 012-2h10a2 2 0 012 2v3H5zm14 2v9a2 2 0 01-2 2H7a2 2 0 01-2-2V9h14z" />
+                </svg>
+                {{ multilingualDatepicker.selectedBeginDate.value.format(format) }}~{{ multilingualDatepicker.selectedEndDate.value.format(format) }}
+            </span>
+        </template>
+        <template v-else>
+            <span class="flex items-center flex-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M3 7h18M6 4v2M18 4v2M5 7V4a2 2 0 012-2h10a2 2 0 012 2v3H5zm14 2v9a2 2 0 01-2 2H7a2 2 0 01-2-2V9h14z" />
+                </svg>
+                Select a date
+            </span>
+        </template>
+    </div>
+    
+
       </slot>
 
       <Transition enter-from-class="opacity-0 scale-95"
