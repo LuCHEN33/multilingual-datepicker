@@ -1,30 +1,31 @@
 <template>
-  <div class="space-y-2 relative" v-dir="">
+  <div class="space-y-2 relative" v-toggle-calendar:aways>
       <slot
           :value="(multilingualDatepicker.selectedBeginDate.value)? multilingualDatepicker.selectedBeginDate.value.format(format) : null"
           :placeholder="$attrs.placeholder"
           :clear="clearDate"
       >
           <div
-              class="relative w-full pl-4 pr-10 py-3 rounded-md overflow-hidden text-base transition-colors bg-gray-50 border focus-within:ring focus-within:outline-none dark:focus-within:ring-opacity-25"
+              class="relative flex-1 w-full pl-4 pr-10 py-3 rounded-md overflow-hidden text-base transition-colors bg-gray-50 border focus-within:ring focus-within:outline-none dark:focus-within:ring-opacity-25"
                v-bind="$attrs">
               <span v-if="multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedEndDate.value">{{ multilingualDatepicker.selectedBeginDate.value.format(format) }}~{{ multilingualDatepicker.selectedEndDate.value.format(format) }}</span>
           </div>
       </slot>
 
-      <Transition enter-from-class="opacity-0 translate-y-3"
-                  enter-to-class="opacity-100 translate-y-0"
-                  enter-active-class="transform transition ease-out duration-200"
-                  leave-active-class="transform transition ease-in duration-150"
-                  leave-from-class="opacity-100 translate-y-0"
-                  leave-to-class="opacity-0 translate-y-3">
+      <Transition enter-from-class="opacity-0 scale-95"
+                  enter-to-class="opacity-100 scale-100"
+                  enter-active-class="transition ease-out duration-300"
+                  leave-active-class="transition ease-in duration-200"
+                  leave-from-class="opacity-100 scale-100"
+                  leave-to-class="opacity-0 scale-95"
+                  >
 
-          <div v-if="showCalendar" class="multilingual-datepicker-calendar absolute bg-white rounded-[20px] border py-5 px-6 shadow-xl flex items-start space-x-3 z-[99] min-w-0">
+          <div v-if="showCalendar" class="multilingual-datepicker-calendar absolute bg-white rounded-[20px] border py-5 px-6 shadow-xl text-xs flex items-start space-x-3 z-[99] min-w-0">
               <button @click="calendarView.subtractMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full">
                   <i class="fas fa-chevron-left"></i>
               </button>
 
-              <div class="flex space-x-12 w-full">
+              <div class="flex space-x-12 w-full justify-between">
                    <Calendar v-for="x in 2" :date="calendarView.date.value.add((x - 1), 'month')" />
               </div>
 
@@ -77,7 +78,7 @@ export default {
       Dates
   },
   directives: {
-      dir: {
+    toggleCalendar: {
           mounted: (el, binding) => {
               toggleCalendarOnClick(binding)
           },
@@ -118,6 +119,7 @@ export default {
 
       const clearDate = () => {
           multilingualDatepicker.selectedBeginDate.value = null
+          multilingualDatepicker.selectedEndDate.value = null
           showCalendar.value = false
       }
 
@@ -137,10 +139,11 @@ export default {
 </script>
 
 <style>
+
+@media (max-width: 640px){
   .multilingual-datepicker-calendar::before {
       --multilingual-datepicker: 0px;
       content: '';
-      @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1];
       transform: translate(50%, -50%) rotate(-45deg);
 
       clip-path: polygon(
@@ -150,4 +153,5 @@ export default {
               calc(100% + var(--multilingual-datepicker))
       );
   }
+} 
 </style>
