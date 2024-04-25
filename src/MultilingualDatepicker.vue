@@ -5,7 +5,7 @@
           :placeholder="$attrs.placeholder"
           :clear="clearDate"
       >
-      <div class="relative flex w-full pl-4 pr-10 items-center justify-center py-3 w-72 h-10 rounded-md overflow-hidden text-base transition-colors bg-gray-50 border shadow-xl">
+      <div class="relative flex w-full pl-4 pr-10 items-center justify-center py-3 w-96 h-10 rounded-md overflow-hidden text-base transition-colors bg-gray-50 border shadow-xl">
         <template v-if="multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedEndDate.value">
             <span class="text-md text-gray-700 flex items-center flex-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
