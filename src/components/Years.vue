@@ -1,6 +1,6 @@
 <template>
     <div class="flex-1">
-        <div class="max-h-72 max-w-sm overflow-y-auto font-bold space-y-6 p-10 bg-gray-100 rounded-lg shadow">
+        <div class="grid grid-cols-2 gap-4 font-bold text-sm w-full p-10">
             <button v-for="year in years" class="rounded-xl py-3 px-4 transition-colors duration-200 ease-in-out hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" @click="selectYear(year)">{{ year }}</button>
         </div>
     </div>
@@ -15,22 +15,29 @@ export default {
     setup(props, { emit }) {
         const multilingualDatepicker = inject('multilingualDatepicker')
 
+        // Compute the years array to show current year +- 5 years
         const years = computed(() => {
-            const years = []
-            const startYear = parseInt(dayjs().subtract(100, 'years').format('YYYY'))
+            const currentYear = dayjs().year();
+            const years = [];
 
-            for (let i = 0; i <= 100; i++) {
-                years.push(startYear + i)
+            for (let i = currentYear - 5; i <= currentYear + 6; i++) {
+                years.push(i);
             }
 
-            return years.reverse()
-        })
+           
+            return years.reverse();
+        });
 
+        // Function to handle year selection
         const selectYear = (year) => {
-            multilingualDatepicker.selectedBeginDate.value = (multilingualDatepicker.selectedBeginDate.value)? multilingualDatepicker.selectedBeginDate.value.year(year) : dayjs().year(year)
-            multilingualDatepicker.selectedEndDate.value = null
+            multilingualDatepicker.selectedBeginDate.value = multilingualDatepicker.selectedBeginDate.value ? 
+                multilingualDatepicker.selectedBeginDate.value.year(year) : 
+                dayjs().year(year);
 
-            emit('changeView', 'dates')
+            multilingualDatepicker.selectedEndDate.value = null;
+
+            // Emit an event to potentially change view
+            emit('changeView', 'dates');
         }
 
         return {
@@ -41,7 +48,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
