@@ -43,12 +43,14 @@
               <div class="flex space-x-12 w-full justify-between">
                    <Calendar v-for="x in 2" :date="calendarView.date.value.add((x - 1), 'month')" />
               </div>
-
               <button @click="calendarView.addMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full">
-                  <i class="fas fa-chevron-right"></i>
+                <i class="fas fa-chevron-right"></i>
               </button>
-          </div>
-
+          
+              <button @click="toggleLanguageMenu" class="w-10 h-10 hover:bg-gray-100 rounded-full">
+                <i class="fas fa-globe"></i>
+              </button>
+            </div>
       </Transition>
 
   </div>
