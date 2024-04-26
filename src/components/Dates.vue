@@ -7,7 +7,7 @@
             </h2>
 
             <div class="grid grid-cols-7 gap-1">
-                <div v-for="weekDay in dayjs.weekdaysShort()" class="font-semibold text-sm text-gray-500 text-center">{{ weekDay }}</div>
+                <div v-for="weekDay in dayjs.weekdaysMin()" class="font-semibold text-xl text-gray-500 text-center">{{ weekDay }}</div>
 
                 <div v-for="day in monthDays" class="flex justify-center items-center">
                     <div v-if="isSameMonth(day)" v-bind:class="[
@@ -18,7 +18,7 @@
                              { 'rounded-r-full': (multilingualDatepicker.isRange && multilingualDatepicker.selectedEndDate.value && multilingualDatepicker.selectedEndDate.value.isSame(day)) },
                              { 'bg-gray-100': isInBetweenRange(day) }
                          ]">
-                        <div class="hover:bg-blue-200 hover:border-blue-500 hover:rounded-full mx-auto cursor-pointer flex justify-center items-center font-bold text-sm w-12 h-12 transition-colors duration-200 ease-in-out" @click="selectDate(day)">
+                        <div class="hover:bg-blue-200 hover:border-blue-500 hover:rounded-full mx-auto cursor-pointer flex justify-center items-center font-bold text-lg w-12 h-12 transition-colors duration-200 ease-in-out" @click="selectDate(day)">
                             <span>{{ day.format('DD') }}</span>
                         </div>
                     </div>
