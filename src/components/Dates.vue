@@ -13,12 +13,11 @@
                     <div v-if="isSameMonth(day)" v-bind:class="[
                              'transition ease-in-out duration-200',
                              { 'bg-blue-500 text-white': isSelectedDay(day) },
-                             { 'rounded-full': (!multilingualDatepicker.isRange) },
-                             { 'rounded-l-full': (multilingualDatepicker.isRange && multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedBeginDate.value.isSame(day)) },
-                             { 'rounded-r-full': (multilingualDatepicker.isRange && multilingualDatepicker.selectedEndDate.value && multilingualDatepicker.selectedEndDate.value.isSame(day)) },
-                             { 'bg-gray-100': isInBetweenRange(day) }
+                             { 'rounded-l-[10px]': (multilingualDatepicker.isRange && multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedBeginDate.value.isSame(day)) },
+                             { 'rounded-r-[10px]': (multilingualDatepicker.isRange && multilingualDatepicker.selectedEndDate.value && multilingualDatepicker.selectedEndDate.value.isSame(day)) },
+                             { 'bg-blue-50 text-blue-500': isInBetweenRange(day) }
                          ]">
-                        <div class="hover:bg-blue-200 hover:border-blue-500 hover:rounded-full mx-auto cursor-pointer flex justify-center items-center font-bold text-lg w-12 h-12 transition-colors duration-200 ease-in-out" @click="selectDate(day)">
+                        <div class="hover:bg-blue-200 hover:border-blue-500 hover:rounded-[10px] mx-auto cursor-pointer flex justify-center items-center font-semibold text-lg w-12 h-12 transition-colors duration-200 ease-in-out" @click="selectDate(day)">
                             <span>{{ day.format('DD') }}</span>
                         </div>
                     </div>
