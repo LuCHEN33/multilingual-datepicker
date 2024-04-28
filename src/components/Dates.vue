@@ -9,13 +9,15 @@
             <div class="grid grid-cols-7 gap-1">
                 <div v-for="weekDay in dayjs.weekdaysMin()" class="font-semibold text-xl text-gray-500 text-center">{{ weekDay }}</div>
 
-                <div v-for="day in monthDays" class="flex justify-center items-center">
+                <div v-for="day in monthDays" class="flex justify-center sm:text-sm items-center">
                     <div v-if="isSameMonth(day)" v-bind:class="[
                              'transition ease-in-out duration-200',
                              { 'bg-blue-500 text-white': isSelectedDay(day) },
+                             { 'ring-2 ring-blue-500 ring-opacity-50': isToday(day)},
+                             { 'text-wirte-500 font-bold rounded-l-[10px] rounded-r-[10px]': isToday(day) },
                              { 'rounded-l-[10px]': (multilingualDatepicker.isRange && multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedBeginDate.value.isSame(day)) },
                              { 'rounded-r-[10px]': (multilingualDatepicker.isRange && multilingualDatepicker.selectedEndDate.value && multilingualDatepicker.selectedEndDate.value.isSame(day)) },
-                             { 'bg-blue-50 text-blue-500': isInBetweenRange(day) }
+                             { 'bg-blue-50 text-blue-500': isInBetweenRange(day) },
                          ]">
                         <div class="hover:bg-blue-200 hover:border-blue-500 hover:rounded-[10px] mx-auto cursor-pointer flex justify-center items-center font-semibold text-lg w-12 h-12 transition-colors duration-200 ease-in-out" @click="selectDate(day)">
                             <span>{{ day.format('DD') }}</span>
@@ -41,7 +43,15 @@ export default {
         const showCalendar = inject('showCalendar')
         const monthDays = inject('monthDays')
         const date = inject('date')
+      
+        // Current date to be used in comparisons
+        const currentDate = ref(dayjs());
         
+
+        const isToday = (day) => {
+            return day.isSame(currentDate.value, 'day');
+        };
+
 
         const isSameMonth = (day) => {
             return day.isSame(date.value.format('YYYY-MM'), 'month')
@@ -72,7 +82,8 @@ export default {
             dayjs,
             monthDays,
             date,
-            selectDate
+            selectDate,
+            isToday
         }
     }
 }

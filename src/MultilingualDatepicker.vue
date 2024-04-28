@@ -5,10 +5,10 @@
           :placeholder="$attrs.placeholder"
           :clear="clearDate"
       >
-      <div class="flex w-1/3 rounded-md text-base text-xl font-semibold ">
+      <div class="flex w-1/3 rounded-md text-basetext-xl font-semibold ">
         Date Range
       </div>
-      <div class="relative flex items-center justify-center py-3 w-1/3 rounded-md overflow-hidden text-base transition-colors bg-gray-50 font-semibold shadow-xl">
+      <div class="relative multilingual-datepicker-calendar flex items-center justify-center py-3 rounded-md overflow-hidden text-base sm:text-center sm:text-sm transition-colors bg-gray-50 font-semibold shadow-xl">
         <template v-if="multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedEndDate.value">
             <span class="text-md text-gray-700 flex items-center flex-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -22,7 +22,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path d="M3 7h18M6 4v2M18 4v2M5 7V4a2 2 0 012-2h10a2 2 0 012 2v3H5zm14 2v9a2 2 0 01-2 2H7a2 2 0 01-2-2V9h14z" />
                 </svg>
-                Select range dates
+                DD MM YYYY
             </span>
         </template>
     </div>
@@ -38,7 +38,7 @@
                   leave-to-class="opacity-0 scale-95"
                   >
 
-          <div v-if="showCalendar" class="multilingual-datepicker-calendar pl-4 pr-10 bg-white rounded-[10px] py-5 px-6 w-1/3 shadow-xl text-xs flex items-start space-x-3 z-[99] min-w-0">
+          <div v-if="showCalendar" class="multilingual-datepicker-calendar pl-4 pr-10 bg-white rounded-[10px] py-5 px-6 shadow-xl text-xs flex items-start space-x-3 z-[99] min-w-0">
               <button @click="calendarView.subtractMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full">
                   <i class="fas fa-chevron-left fa-lg"></i>
               </button>
@@ -54,6 +54,8 @@
                 <i class="fas fa-globe fa-lg"></i>
               </button>
             </div>
+
+
       </Transition>
 
   </div>
@@ -161,10 +163,64 @@ export default {
 <style>
 
 @media (max-width: 640px){
-  .multilingual-datepicker-calendar::before {
-      --multilingual-datepicker: 0px;
-      content: '';
-      transform: translate(50%, -50%) rotate(-45deg);
-  }
-} 
+    /* Base styles for the .attic-datepicker-calendar's pseudo-element */
+.attic-datepicker-calendar::before {
+    --attic-datepicker-calendar: 0px;
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 4rem;  /* Adjust size as needed for mobile */
+    height: 4rem; /* Adjust size as needed for mobile */
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+    transform: translate(50%, -50%) rotate(-45deg);
+    clip-path: polygon(
+        calc(var(--attic-datepicker-calendar) * -1) calc(var(--attic-datepicker-calendar) * -1),
+        calc(100% + var(--attic-datepicker-calendar)) calc(var(--attic-datepicker-calendar) * -1),
+        calc(100% + var(--attic-datepicker-calendar)) calc(100% + var(--attic-datepicker-calendar))
+    );
+}
+
+.attic-datepicker-calendar.place-left::before {
+    left: 2rem;  /* Closer to the edge on smaller screens */
+}
+
+.attic-datepicker-calendar.place-right::before {
+    right: 2rem; /* Closer to the edge on smaller screens */
+}
+
+}
+
+
+/* Adjustments for tablets */
+@media (min-width: 768px) {
+    .attic-datepicker-calendar::before {
+        width: 6rem;  /* Larger size for tablets */
+        height: 6rem; /* Larger size for tablets */
+    }
+    .attic-datepicker-calendar.place-left::before {
+        left: 4rem;  /* More margin for larger screens */
+    }
+    .attic-datepicker-calendar.place-right::before {
+        right: 4rem; /* More margin for larger screens */
+    }
+}
+
+/* Adjustments for desktops */
+@media (min-width: 1024px) {
+    .attic-datepicker-calendar::before {
+        width: 8rem;  /* Even larger size for desktops */
+        height: 8rem; /* Even larger size for desktops */
+    }
+    .attic-datepicker-calendar.place-left::before {
+        left: 8rem;  /* Further from edge on larger screens */
+    }
+    .attic-datepicker-calendar.place-right::before {
+        right: 8rem; /* Further from edge on larger screens */
+    }
+}
+
+
+
 </style>

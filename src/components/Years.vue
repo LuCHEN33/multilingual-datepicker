@@ -1,6 +1,6 @@
 <template>
     <div class="flex-1">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-bold text-lg w-full p-10">
+        <div class="max-h-72 max-w-sm overflow-y-auto md:overflow-scroll space-y-5 font-bold text-sm">
             <button v-for="year in years" class="w-full rounded-xl py-3 px-4 transition-colors duration-200 ease-in-out hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" @click="selectYear(year)">{{ year }}</button>
         </div>
     </div>
