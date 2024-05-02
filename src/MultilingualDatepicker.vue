@@ -24,10 +24,9 @@
                 </svg>
                 DD MM YYYY
             </span>
+              
         </template>
     </div>
-    
-
       </slot>
 
       <Transition enter-from-class="opacity-0 scale-95"
@@ -51,17 +50,31 @@
               </button>
         
                 <select v-model="currentLocale" @change="changeLocale(currentLocale)">
-                  <option value="en">English</option>
-                  <option value="de">Deutsch</option>
-                  <option value="es">Español</option>
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="ar">العربية </option>
+                    <option value="fr">Français</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="ru">Русский</option>
+                    <option value="pt">Português</option>
+                    <option value="sw">Kiswahili</option>
+                    <option value="id">Indonesia</option>
+                    <option value="ur">اردو</option>
+                    <option value="ja">日本語</option>
+                    <option value="de">Deutsch</option>
+                    <option value="fa">فارسی</option>
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="it">Italiano</option>
+                    <option value="tr">Türkçe</option>
+                    <option value="mr">मराठी</option>
+                    <option value="ta">தமிழ்</option>
+                    <option value="ko">한국어</option>
                   <!-- Add more options as needed -->
                 </select>
                 
             </div>
-
-
       </Transition>
-
   </div>
 </template>
 
@@ -73,8 +86,26 @@ import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
 import weekday from 'dayjs/plugin/weekday'
 import isBetween from 'dayjs/plugin/isBetween'
-import 'dayjs/locale/de';
+import 'dayjs/locale/zh'; 
+import 'dayjs/locale/hi'; 
 import 'dayjs/locale/es'; 
+import 'dayjs/locale/ar'; 
+import 'dayjs/locale/fr'; 
+import 'dayjs/locale/bn';
+import 'dayjs/locale/ru';
+import 'dayjs/locale/pt';
+import 'dayjs/locale/sw';
+import 'dayjs/locale/id';
+import 'dayjs/locale/ur';
+import 'dayjs/locale/ja';
+import 'dayjs/locale/de'; 
+import 'dayjs/locale/fa'; 
+import 'dayjs/locale/vi'; 
+import 'dayjs/locale/it'; 
+import 'dayjs/locale/tr';
+import 'dayjs/locale/mr'; 
+import 'dayjs/locale/ta'; 
+import 'dayjs/locale/ko';  
 
 dayjs.extend(localeData)
 dayjs.extend(weekday)
@@ -143,7 +174,8 @@ export default {
           return {
               subtractMonth,
               addMonth,
-              date
+              date,
+              endDate
           }
       })
 
@@ -165,7 +197,7 @@ export default {
            currentLocale.value = locale;
        };
 
-  
+      
 
       provide('multilingualDatepicker', multilingualDatepicker)
       provide('showCalendar', showCalendar)

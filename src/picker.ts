@@ -12,6 +12,7 @@ export default class picker{
         this.selectedEndDate = ref(null)
         this.isRange = isRange
         this.isDisplay = isDisplay
+
    
 
         if(isRange) {
@@ -47,11 +48,6 @@ export default class picker{
         if(!this.isDisplay)
         {
             if(this.isRange && this.selectedBeginDate.value && this.selectedEndDate.value)
-            {
-                return true
-            }
-
-            if(!this.isRange)
             {
                 return true
             }

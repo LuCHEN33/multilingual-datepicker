@@ -35,7 +35,7 @@ export default {
         provide('monthDays', monthDays)
 
         const changeView = (view) => {
-            displayView.value = view
+            displayView.value = view;
         }
 
         watch(() => props.date, (value, prevValue) => {

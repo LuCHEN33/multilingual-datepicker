@@ -2,7 +2,7 @@
     <div class="flex-1 flex justify-center items-center space-x-16">
         <div class="space-y-5">
             <h2 class="text-center font-bold text-xl">
-                <span class="hover:bg-blue-500 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'months')">{{ date.format('MMMM') }}</span>
+                <span class="hover:bg-blue-500 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'months')">{{ date.format('MMMM')}}</span>
                 <span class="hover:bg-blue-500 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'years')">{{ date.format('YYYY') }}</span>
             </h2>
 
@@ -46,12 +46,14 @@ export default {
       
         // Current date to be used in comparisons
         const currentDate = ref(dayjs());
-        
 
         const isToday = (day) => {
             return day.isSame(currentDate.value, 'day');
         };
-
+        
+        const updateLocaleDate = () => {
+           date.value = dayjs(date.value); // Reconstruct the dayjs object to apply new locale
+       };
 
         const isSameMonth = (day) => {
             return day.isSame(date.value.format('YYYY-MM'), 'month')
@@ -73,9 +75,6 @@ export default {
             showCalendar.value = !multilingualDatepicker.allowClose()
         }
 
-        const updateLocaleDate = () => {
-            date.value = dayjs(date.value); // Reconstruct the dayjs object to apply new locale
-        };
 
        
 
