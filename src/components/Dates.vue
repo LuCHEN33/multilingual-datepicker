@@ -73,6 +73,12 @@ export default {
             showCalendar.value = !multilingualDatepicker.allowClose()
         }
 
+        const updateLocaleDate = () => {
+            date.value = dayjs(date.value); // Reconstruct the dayjs object to apply new locale
+        };
+
+       
+
         return {
             multilingualDatepicker,
             calendarView,
@@ -83,7 +89,8 @@ export default {
             monthDays,
             date,
             selectDate,
-            isToday
+            isToday,
+            updateLocaleDate
         }
     }
 }

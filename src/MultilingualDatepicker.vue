@@ -49,10 +49,14 @@
               <button @click="calendarView.addMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full">
                 <i class="fas fa-chevron-right fa-lg"></i>
               </button>
-          
-              <button @click="toggleLanguageMenu" class="w-10 h-10 hover:bg-gray-100 rounded-full">
-                <i class="fas fa-globe fa-lg"></i>
-              </button>
+        
+                <select v-model="currentLocale" @change="changeLocale(currentLocale)">
+                  <option value="en">English</option>
+                  <option value="de">Deutsch</option>
+                  <option value="es">Español</option>
+                  <!-- Add more options as needed -->
+                </select>
+                
             </div>
 
 
@@ -69,6 +73,8 @@ import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
 import weekday from 'dayjs/plugin/weekday'
 import isBetween from 'dayjs/plugin/isBetween'
+import 'dayjs/locale/de';
+import 'dayjs/locale/es'; 
 
 dayjs.extend(localeData)
 dayjs.extend(weekday)
@@ -117,6 +123,7 @@ export default {
           const date = ref((props.date)? dayjs(props.date) : dayjs())
           const endDate = ref((props.endDate)? dayjs(props.endDate) : dayjs())
 
+
           const subtractMonth = () => {
               date.value = date.value.subtract(1, 'month')
           }
@@ -132,6 +139,7 @@ export default {
           watch(() => multilingualDatepicker.selectedEndDate.value, (value, prevValue) => {
             endDate.value = value
          })
+
           return {
               subtractMonth,
               addMonth,
@@ -145,16 +153,34 @@ export default {
           showCalendar.value = false
       }
 
+      const currentLocale = ref('en'); // Default locale
+
+      // Watch for changes in the locale and update Day.js config
+      watch(currentLocale, (newLocale) => {
+          dayjs.locale(newLocale);
+      });
+
+       // Method to change the locale
+       const changeLocale = (locale) => {
+           currentLocale.value = locale;
+       };
+
+  
+
       provide('multilingualDatepicker', multilingualDatepicker)
       provide('showCalendar', showCalendar)
       provide('calendarView', calendarView)
+      provide('currentLocale', currentLocale);
 
       return {
           clearDate,
           multilingualDatepicker,
           showCalendar,
           calendarView,
-          dayjs
+          dayjs,
+          changeLocale, 
+          currentLocale,
+          
       }
   }
 }
@@ -196,8 +222,20 @@ export default {
 /* Adjustments for tablets */
 @media (min-width: 768px) {
     .attic-datepicker-calendar::before {
+        content: '';
+        position: absolute;
+        top: 0;
         width: 6rem;  /* Larger size for tablets */
         height: 6rem; /* Larger size for tablets */
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.1);
+        transform: translate(50%, -50%) rotate(-45deg);
+        clip-path: polygon(
+            calc(var(--attic-datepicker-calendar) * -1) calc(var(--attic-datepicker-calendar) * -1),
+            calc(100% + var(--attic-datepicker-calendar)) calc(var(--attic-datepicker-calendar) * -1),
+            calc(100% + var(--attic-datepicker-calendar)) calc(100% + var(--attic-datepicker-calendar))
+        );
     }
     .attic-datepicker-calendar.place-left::before {
         left: 4rem;  /* More margin for larger screens */
@@ -209,9 +247,22 @@ export default {
 
 /* Adjustments for desktops */
 @media (min-width: 1024px) {
+    
     .attic-datepicker-calendar::before {
+        content: '';
+        position: absolute;
+        top: 0;
         width: 8rem;  /* Even larger size for desktops */
         height: 8rem; /* Even larger size for desktops */
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.1);
+        transform: translate(50%, -50%) rotate(-45deg);
+        clip-path: polygon(
+            calc(var(--attic-datepicker-calendar) * -1) calc(var(--attic-datepicker-calendar) * -1),
+            calc(100% + var(--attic-datepicker-calendar)) calc(var(--attic-datepicker-calendar) * -1),
+            calc(100% + var(--attic-datepicker-calendar)) calc(100% + var(--attic-datepicker-calendar))
+        );
     }
     .attic-datepicker-calendar.place-left::before {
         left: 8rem;  /* Further from edge on larger screens */
