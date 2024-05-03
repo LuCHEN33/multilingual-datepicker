@@ -1,14 +1,14 @@
 <template>
-  <div class="space-y-3 relative pl-20 pr-20" v-toggle-calendar:aways>
+  <div class="space-y-3 relative pl-5 pr-5 sm:pl-10 sm:pr-10 md:pl-20 md:pr-20" v-toggle-calendar:aways>
       <slot
           :value="(multilingualDatepicker.selectedBeginDate.value)? multilingualDatepicker.selectedBeginDate.value.format(format) : null"
           :placeholder="$attrs.placeholder"
           :clear="clearDate"
       >
-      <div class="flex w-1/3 rounded-md text-basetext-xl font-semibold ">
+      <div class="flex mt-4 w-full md:w-1/2 lg:w-1/2 xl:w-1/2 rounded-md text-sm md:text-base lg:text-xl font-semibold">
         Date Range
       </div>
-      <div class="relative multilingual-datepicker-calendar flex items-center justify-center py-3 rounded-md overflow-hidden text-base sm:text-center sm:text-sm transition-colors bg-gray-50 font-semibold shadow-xl">
+      <div class="relative multilingual-datepicker-calendar flex items-center justify-center py-3 rounded-md overflow-hidden text-sm md:text-base transition-colors bg-gray-50 font-semibold shadow-xl md:w-2/5 lg:w-2/5 xl:w-2/5 ">
         <template v-if="multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedEndDate.value">
             <span class="text-md text-gray-700 flex items-center flex-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -18,7 +18,7 @@
             </span>
         </template>
         <template v-else>
-            <span class="flex items-center flex-1 text-base text-gray-400">
+            <span class="flex items-center flex-1 text-sm md:text-base text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path d="M3 7h18M6 4v2M18 4v2M5 7V4a2 2 0 012-2h10a2 2 0 012 2v3H5zm14 2v9a2 2 0 01-2 2H7a2 2 0 01-2-2V9h14z" />
                 </svg>
@@ -37,7 +37,7 @@
                   leave-to-class="opacity-0 scale-95"
                   >
 
-          <div v-if="showCalendar" class="multilingual-datepicker-calendar pl-4 pr-10 bg-white rounded-[10px] py-5 px-6 shadow-xl text-xs flex items-start space-x-3 z-[99] min-w-0">
+          <div v-if="showCalendar" class="multilingual-datepicker-calendar pl-4 pr-10 bg-white rounded-[10px] py-5 px-6 shadow-xl text-xs flex items-start space-x-3 z-[99] min-w-0 md:w-2/5 lg:w-2/5 xl:w-2/5">
               <button @click="calendarView.subtractMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full">
                   <i class="fas fa-chevron-left fa-lg"></i>
               </button>
@@ -49,27 +49,28 @@
                 <i class="fas fa-chevron-right fa-lg"></i>
               </button>
         
-                <select v-model="currentLocale" @change="changeLocale(currentLocale)">
-                    <option value="en">English</option>
-                    <option value="zh">中文</option>
-                    <option value="hi">हिन्दी</option>
-                    <option value="ar">العربية </option>
-                    <option value="fr">Français</option>
-                    <option value="bn">বাংলা</option>
-                    <option value="ru">Русский</option>
-                    <option value="pt">Português</option>
-                    <option value="sw">Kiswahili</option>
-                    <option value="id">Indonesia</option>
-                    <option value="ur">اردو</option>
-                    <option value="ja">日本語</option>
-                    <option value="de">Deutsch</option>
-                    <option value="fa">فارسی</option>
-                    <option value="vi">Tiếng Việt</option>
-                    <option value="it">Italiano</option>
-                    <option value="tr">Türkçe</option>
-                    <option value="mr">मराठी</option>
-                    <option value="ta">தமிழ்</option>
-                    <option value="ko">한국어</option>
+                <select v-model="currentLocale" @change="changeLocale(currentLocale)"
+                class="w-18 h-10 font-semibold text-base sm:text-base text-sm hover:bg-gray-100 rounded-[10px]">
+                    <option class="text-base text-xs" value="en">English</option>
+                    <option class=" text-base text-xs" value="zh">中文</option>
+                    <option class="font-semibold text-base text-xs" value="hi">हिन्दी</option>
+                    <option class="font-semibold text-base text-xs" value="ar">العربية </option>
+                    <option class="font-semibold text-base text-xs" value="fr">Français</option>
+                    <option class="font-semibold text-base text-xs" value="bn">বাংলা</option>
+                    <option class="font-semibold text-base text-xs" value="ru">Русский</option>
+                    <option class="font-semibold text-base text-xs" value="pt">Português</option>
+                    <option class="font-semibold text-base text-xs" value="sw">Kiswahili</option>
+                    <option class="font-semibold text-base text-xs" value="id">Indonesia</option>
+                    <option class="font-semibold text-base text-xs" value="ur">اردو</option>
+                    <option class="font-semibold text-base text-xs" value="ja">日本語</option>
+                    <option class="font-semibold text-base text-xs" value="de">Deutsch</option>
+                    <option class="font-semibold text-base text-xs" value="fa">فارسی</option>
+                    <option class="font-semibold text-base text-xs" value="vi">Tiếng Việt</option>
+                    <option class="font-semibold text-base text-xs" value="it">Italiano</option>
+                    <option class="font-semibold text-base text-xs" value="tr">Türkçe</option>
+                    <option class="font-semibold text-base text-xs" value="mr">मराठी</option>
+                    <option class="font-semibold text-base text-xs" value="ta">தமிழ்</option>
+                    <option class="font-semibold text-base text-xs" value="ko">한국어</option>
                   <!-- Add more options as needed -->
                 </select>
                 
@@ -255,7 +256,7 @@ export default {
 @media (min-width: 768px) {
     .attic-datepicker-calendar::before {
         content: '';
-        position: absolute;
+        position: left;
         top: 0;
         width: 6rem;  /* Larger size for tablets */
         height: 6rem; /* Larger size for tablets */

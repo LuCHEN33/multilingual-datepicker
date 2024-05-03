@@ -1,15 +1,15 @@
 <template>
-    <div class="flex-1 flex justify-center items-center space-x-16">
-        <div class="space-y-5">
-            <h2 class="text-center font-bold text-xl">
-                <span class="hover:bg-blue-500 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'months')">{{ date.format('MMMM')}}</span>
-                <span class="hover:bg-blue-500 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'years')">{{ date.format('YYYY') }}</span>
+    <div class="flex flex-1 justify-center items-center px-4 sm:px-6 lg:px-6">
+        <div class="space-y-5 w-full max-w-4xl">
+            <h2 class="text-center font-bold text-lg sm:text-xl lg:text-xl">
+                <span class="hover:bg-blue-200 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'months')">{{ date.format('MMMM')}}</span>
+                <span class="hover:bg-blue-200 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'years')">{{ date.format('YYYY') }}</span>
             </h2>
 
             <div class="grid grid-cols-7 gap-1">
-                <div v-for="weekDay in dayjs.weekdaysMin()" class="font-semibold text-xl text-gray-500 text-center">{{ weekDay }}</div>
+                <div v-for="weekDay in dayjs.weekdaysMin()" class="font-semibold text-base sm:text-lg lg:text-lg text-gray-500 text-center">{{ weekDay }}</div>
 
-                <div v-for="day in monthDays" class="flex justify-center sm:text-sm items-center">
+                <div v-for="day in monthDays" class="flex justify-center items-center">
                     <div v-if="isSameMonth(day)" v-bind:class="[
                              'transition ease-in-out duration-200',
                              { 'bg-blue-500 text-white': isSelectedDay(day) },
@@ -19,7 +19,7 @@
                              { 'rounded-r-[10px]': (multilingualDatepicker.isRange && multilingualDatepicker.selectedEndDate.value && multilingualDatepicker.selectedEndDate.value.isSame(day)) },
                              { 'bg-blue-50 text-blue-500': isInBetweenRange(day) },
                          ]">
-                        <div class="hover:bg-blue-200 hover:border-blue-500 hover:rounded-[10px] mx-auto cursor-pointer flex justify-center items-center font-semibold text-lg w-12 h-12 transition-colors duration-200 ease-in-out" @click="selectDate(day)">
+                        <div class="hover:bg-blue-200 hover:border-blue-500 hover:rounded-[10px] mx-auto cursor-pointer flex justify-center items-center font-semibold text-sm sm:text-base lg:text-base w-10 sm:w-12 lg:w-12 h-10 sm:h-12 lg:h-12 transition-colors duration-200 ease-in-out" @click="selectDate(day)">
                             <span>{{ day.format('DD') }}</span>
                         </div>
                     </div>
