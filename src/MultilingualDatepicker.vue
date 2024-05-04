@@ -51,9 +51,10 @@
         
                 <select v-model="currentLocale" @change="changeLocale(currentLocale)"
                 class="w-18 h-10 font-semibold text-base sm:text-base text-sm hover:bg-gray-100 rounded-[10px]">
-                    <option class="text-base text-xs" value="en">English</option>
-                    <option class=" text-base text-xs" value="zh">中文</option>
+                    <option class="font-semibold text-base text-xs" value="en">English</option>
+                    <option class="font-semibold text-base text-xs" value="zh">中文</option>
                     <option class="font-semibold text-base text-xs" value="hi">हिन्दी</option>
+                    <option class="font-semibold text-base text-xs" value="es">Español</option>
                     <option class="font-semibold text-base text-xs" value="ar">العربية </option>
                     <option class="font-semibold text-base text-xs" value="fr">Français</option>
                     <option class="font-semibold text-base text-xs" value="bn">বাংলা</option>
@@ -70,7 +71,6 @@
                     <option class="font-semibold text-base text-xs" value="tr">Türkçe</option>
                     <option class="font-semibold text-base text-xs" value="mr">मराठी</option>
                     <option class="font-semibold text-base text-xs" value="ta">தமிழ்</option>
-                    <option class="font-semibold text-base text-xs" value="ko">한국어</option>
                   <!-- Add more options as needed -->
                 </select>
                 
@@ -196,8 +196,7 @@ export default {
        // Method to change the locale
        const changeLocale = (locale) => {
            currentLocale.value = locale;
-       };
-
+       }
       
 
       provide('multilingualDatepicker', multilingualDatepicker)

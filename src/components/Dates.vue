@@ -14,6 +14,7 @@
                              'transition ease-in-out duration-200',
                              { 'bg-blue-500 text-white': isSelectedDay(day) },
                              { 'ring-2 ring-blue-500 ring-opacity-50': isToday(day)},
+                             {'hover:bg-blue-200 hover:border-blue-500 hover:rounded-[10px] cursor-pointer text-gray-400 cursor-not-allowed':isPastDate(day)},
                              { 'text-wirte-500 font-bold rounded-l-[10px] rounded-r-[10px]': isToday(day) },
                              { 'rounded-l-[10px]': (multilingualDatepicker.isRange && multilingualDatepicker.selectedBeginDate.value && multilingualDatepicker.selectedBeginDate.value.isSame(day)) },
                              { 'rounded-r-[10px]': (multilingualDatepicker.isRange && multilingualDatepicker.selectedEndDate.value && multilingualDatepicker.selectedEndDate.value.isSame(day)) },
@@ -70,13 +71,18 @@ export default {
                 day.isBetween(multilingualDatepicker.selectedBeginDate.value, multilingualDatepicker.selectedEndDate.value)
         }
 
+        const isPastDate = (day) => {
+            return day.isBefore(dayjs(), 'day'); // Check if the day is before today
+        };
+
         const selectDate = (day) => {
-            multilingualDatepicker.selectDate(day)
-            showCalendar.value = !multilingualDatepicker.allowClose()
+            if (!isPastDate(day)) {
+                multilingualDatepicker.selectDate(day);
+                showCalendar.value = !multilingualDatepicker.allowClose();
+            }
+
         }
 
-
-       
 
         return {
             multilingualDatepicker,
@@ -89,7 +95,8 @@ export default {
             date,
             selectDate,
             isToday,
-            updateLocaleDate
+            updateLocaleDate,
+            isPastDate
         }
     }
 }
