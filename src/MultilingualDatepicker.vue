@@ -64,13 +64,13 @@
                     <option class="font-semibold text-base text-xs" value="id">Indonesia</option>
                     <option class="font-semibold text-base text-xs" value="ur">اردو</option>
                     <option class="font-semibold text-base text-xs" value="ja">日本語</option>
+                    <option class="font-semibold text-base text-xs" value="pa-Arab">Punjabi</option>
                     <option class="font-semibold text-base text-xs" value="de">Deutsch</option>
                     <option class="font-semibold text-base text-xs" value="fa">فارسی</option>
                     <option class="font-semibold text-base text-xs" value="vi">Tiếng Việt</option>
                     <option class="font-semibold text-base text-xs" value="it">Italiano</option>
                     <option class="font-semibold text-base text-xs" value="tr">Türkçe</option>
                     <option class="font-semibold text-base text-xs" value="mr">मराठी</option>
-                    <option class="font-semibold text-base text-xs" value="ta">தமிழ்</option>
                   <!-- Add more options as needed -->
                 </select>
                 

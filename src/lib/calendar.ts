@@ -17,7 +17,7 @@ export const getAllDatesInMonth = (date: any) => {
         {
             length: date.daysInMonth()
         },
-        (v, k) => date.date(k + 1)
+        (_, k) => date.date(k + 1)
     );
 }
 

@@ -35,6 +35,8 @@
 <script>
 import dayjs from 'dayjs'
 import {ref, reactive, inject, provide, nextTick} from "vue";
+import 'dayjs/locale/en';  // Ensure all locales you use are imported
+import 'dayjs/locale/es'; 
 
 export default {
     name: "Dates",
@@ -44,7 +46,8 @@ export default {
         const showCalendar = inject('showCalendar')
         const monthDays = inject('monthDays')
         const date = inject('date')
-      
+        const currentLocale = inject('currentLocale')
+        
         // Current date to be used in comparisons
         const currentDate = ref(dayjs());
 

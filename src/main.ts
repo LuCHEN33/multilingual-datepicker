@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
 import './style.css'
-import MultilingualDatepicker  from './MultilingualDatepicker.vue'
+import App  from './App.vue'
 
-createApp(MultilingualDatepicker ).mount('#app')
+createApp(App ).mount('#app')
