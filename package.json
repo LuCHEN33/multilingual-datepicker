@@ -1,8 +1,39 @@
 {
   "name": "multilingual-date-picker",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
+  "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LuCHEN33/multilingual-datepicker"
+  },
+  "keywords": [
+    "vue-date-picker",
+    "vue-multilingual-date-picker",
+    "range",
+    "multilingual",
+    "vue3",
+    "vite",
+    "typescript",
+    "tailwindcss",
+    "dayjs"
+
+  ],
+  "main": "./dist/vue-multilingual-date-picker.umd.cjs",
+  "module": "./dist/vue-multilingual-date-picker.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-multilingual-date-picker.js",
+      "require": "./dist/vue-multilingual-date-picker.umd.cjs"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
+
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
@@ -19,6 +50,7 @@
     "@vue/test-utils": "^2.4.0-alpha.2",
     "autoprefixer": "^10.4.19",
     "jsdom": "^24.0.0",
+    "path": "^0.12.7",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.0.2",
@@ -26,5 +58,10 @@
     "vite-plugin-dts": "^3.9.1",
     "vitest": "^1.6.0",
     "vue-tsc": "^1.4.2"
+  },
+  "peerDependencies": {
+    "dayjs": "^^1.11.10",
+    "tailwindcss": "^3.4.3",
+    "vue": "^3.2.47"
   }
 }

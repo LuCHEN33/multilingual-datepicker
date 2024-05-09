@@ -22,6 +22,6 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["vite/client", "node"]// Add other necessary types
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "test/multilingualDatepicker.test.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

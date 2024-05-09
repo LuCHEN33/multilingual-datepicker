@@ -34,7 +34,7 @@
 
 <script>
 import dayjs from 'dayjs'
-import {ref, reactive, inject, provide, nextTick} from "vue";
+import {ref, reactive, inject, provide} from "vue";
 import 'dayjs/locale/en';  // Ensure all locales you use are imported
 import 'dayjs/locale/es'; 
 
