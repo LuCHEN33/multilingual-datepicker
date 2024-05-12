@@ -23,8 +23,9 @@ npm i multilingual-date-picker
 ## ⚙️ Usage
 
 Import package
-import multilingual-date-picker from 'multilingual-date-picker';
 ```javascript
+import multilingual-date-picker from 'multilingual-date-picker';
+
 export default {
   components: {
     MultilingualDatepicker
