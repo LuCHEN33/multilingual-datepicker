@@ -11,7 +11,7 @@ range date selection
 You can choose your favorite language as needed
 
 <div align="center">
-  <img src="https://github.com/LuCHEN33/multilingual-datepicker/assets/96775861/1b063698-29e7-48b2-9ffd-9865a45ffb17" />
+  <img src="https://github.com/LuCHEN33/multilingual-datepicker/assets/96775861/ecb4eaf0-002e-4f82-92d0-6b9f24de659f" />
 </div>
 
 
