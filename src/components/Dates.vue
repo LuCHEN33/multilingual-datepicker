@@ -1,13 +1,13 @@
 <template>
     <div class="flex flex-1 justify-center items-center px-4 sm:px-6 lg:px-6">
         <div class="space-y-5 w-full max-w-4xl">
-            <h2 class="text-center font-bold text-lg sm:text-xl lg:text-xl">
+            <h2 class="text-center font-bold text-lg sm:text-xl md:text-xl lg:text-xl">
                 <span class="hover:bg-blue-200 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'months')">{{ date.format('MMMM')}}</span>
                 <span class="hover:bg-blue-200 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'years')">{{ date.format('YYYY') }}</span>
             </h2>
 
             <div class="grid grid-cols-7 gap-1">
-                <div v-for="weekDay in dayjs.weekdaysMin()" class="font-semibold text-base sm:text-lg lg:text-lg text-gray-500 text-center">{{ weekDay }}</div>
+                <div v-for="weekDay in dayjs.weekdaysMin()" class="font-semibold text-base sm:text-lg md:text-lg lg:text-lg text-gray-500 text-center">{{ weekDay }}</div>
 
                 <div v-for="day in monthDays" class="flex justify-center items-center">
                     <div v-if="isSameMonth(day)" v-bind:class="[
