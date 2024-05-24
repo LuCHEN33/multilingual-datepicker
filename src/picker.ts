@@ -13,7 +13,7 @@ export default class picker{
         this.isRange = isRange
         this.isDisplay = isDisplay
 
-   
+
 
         if(isRange) {
             this.selectedEndDate.value = (selectedEndDate)? dayjs(selectedEndDate) : null

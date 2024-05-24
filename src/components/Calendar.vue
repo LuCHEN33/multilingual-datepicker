@@ -13,6 +13,7 @@ import { setUpCalendar } from "../lib/calendar"
 import Years from "./Years.vue"
 import Months from "./Months.vue"
 import Dates from "./Dates.vue"
+import dayjs from 'dayjs';
 
 export default {
     name: "Calendar",
@@ -28,8 +29,9 @@ export default {
         const { calendar } = setUpCalendar()
 
         const displayView = ref('dates')
+        const date = ref(dayjs(props.date));
         const monthDays = computed(() => calendar.value.monthView.date(props.date))
-        const date = ref(props.date)
+        
 
         provide('date', date)
         provide('monthDays', monthDays)
@@ -39,7 +41,7 @@ export default {
         }
 
         watch(() => props.date, (value, prevValue) => {
-            date.value = value
+            date.value = dayjs(value)
         })
 
         return {
