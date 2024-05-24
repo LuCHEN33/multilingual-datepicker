@@ -22,20 +22,35 @@ npm i multilingual-date-picker
 
 ## ⚙️ Usage
 
+### Globle
+```javascript
+import { createApp } from 'vue';
+import App from './App.vue';
+
+import MultilingualDatepicker from 'multilingual-date-picker';
+
+const app = createApp(App);
+app.component('MultilingualDatepicker', MultilingualDatepicker);
+```
+
+### Local
 Import package
 ```javascript
-import multilingual-date-picker from 'multilingual-date-picker';
+<script>
+import  MultilingualDatepicker from 'multilingual-date-picker';
 
 export default {
   components: {
     MultilingualDatepicker
   }
 }
+</script>
 ```
-
 
 Create component in your template
 ```javascript
-<MultilingualDatepicker />
+<template>
+  <MultilingualDatepicker />
+</template>
 ```
 
