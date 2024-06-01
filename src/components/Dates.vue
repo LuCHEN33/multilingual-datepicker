@@ -2,8 +2,8 @@
     <div class="flex flex-1 justify-center items-center px-4 sm:px-6 lg:px-6">
         <div class="space-y-5 w-full max-w-4xl">
             <h2 class="text-center font-bold text-lg sm:text-xl md:text-xl lg:text-xl">
-                <span class="hover:bg-blue-200 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'months')">{{ date.format('MMMM')}}</span>
-                <span class="hover:bg-blue-200 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'years')">{{ date.format('YYYY') }}</span>
+                <span class="hover:bg-blue-200 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'months')">{{ formattedMonth}}</span>
+                <span class="hover:bg-blue-200 hover:text-white p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out" @click="$emit('changeView', 'years')">{{ formattedYear }}</span>
             </h2>
 
             <div class="grid grid-cols-7 gap-1">
@@ -34,7 +34,7 @@
 
 <script>
 import dayjs from 'dayjs'
-import {ref, reactive, inject, provide} from "vue";
+import {ref, reactive, inject, provide, computed, watch} from "vue";
 import 'dayjs/locale/en';  // Ensure all locales you use are imported
 import 'dayjs/locale/es'; 
 
@@ -86,6 +86,19 @@ export default {
 
         }
 
+        const formattedMonth = computed(() => {
+            return dayjs(date.value).locale(currentLocale.value).format('MMMM');
+        });
+
+        const formattedYear = computed(() => {
+            return dayjs(date.value).locale(currentLocale.value).format('YYYY');
+        });
+
+        watch(currentLocale, (newLocale) => {
+            dayjs.locale(newLocale);
+            date.value = dayjs(date.value).locale(newLocale);
+        });
+
 
         return {
             multilingualDatepicker,
@@ -99,7 +112,9 @@ export default {
             selectDate,
             isToday,
             updateLocaleDate,
-            isPastDate
+            isPastDate,
+            formattedMonth,
+            formattedYear,
         }
     }
 }

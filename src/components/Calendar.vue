@@ -46,7 +46,8 @@ export default {
 
         return {
             displayView,
-            changeView
+            changeView,
+            date
         }
     }
 }
